@@ -993,10 +993,10 @@ body {
 /*
   Original watercolor image ratio:
   864px wide × 2400px tall
-  1821 / 864 = 2.78
+  1821 / 864 = 3.00
 */
 body {
-  min-height: max(100vh, calc(100vw * 2.78));
+  min-height: max(100vh, calc(100vw * 3.00));
   background: var(--page-bottom);
 }
 
@@ -1077,7 +1077,7 @@ body::after {
 @media (max-width: 900px) {
   /* Use the mobile watercolor only after the passcode has been entered */
   body.reveal-unlocked {
-    min-height: max(100vh, calc(100vw * 2.78));
+    min-height: max(100vh, calc(100vw * 3.00));
   }
 
   body.reveal-unlocked::before {
