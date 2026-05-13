@@ -1082,7 +1082,6 @@ body::after {
 
   .layout-grid {
     grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-    gap: 18px;
   }
 
   .hero h1 {
@@ -1096,73 +1095,6 @@ body::after {
 
   .guess-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .card {
-    padding: 22px 24px;
-  }
-
-  .guess-card {
-    padding: 20px 24px;
-  }
-
-  .guess-card .section-heading {
-    margin-bottom: 14px;
-  }
-
-  .guess-card .section-heading h2 {
-    font-size: 2.3rem;
-    line-height: 1;
-  }
-
-  .guess-card .section-heading p:not(.eyebrow) {
-    margin-top: 8px;
-    line-height: 1.35;
-    font-size: 0.98rem;
-  }
-
-  .voter-form {
-    gap: 8px;
-  }
-
-  label {
-    margin-bottom: 5px;
-    font-size: 0.84rem;
-  }
-
-  input {
-    min-height: 46px;
-    padding: 0 14px;
-  }
-
-  textarea {
-    min-height: 54px;
-    padding: 11px 14px;
-  }
-
-  .guess-button {
-    min-height: 160px;
-    padding: 12px 10px;
-    gap: 5px;
-    border-radius: 24px;
-  }
-
-  .chromosome-badge {
-    width: 104px;
-  }
-
-  .guess-title {
-    font-size: 1.55rem;
-  }
-
-  .guess-subtitle {
-    font-size: 0.76rem;
-  }
-
-  .button.full {
-    min-height: 46px;
-    margin-top: 8px;
   }
 
   .storybook-bottom {
