@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=720">
+  <meta name="description" content="A private watercolor-storybook baby reveal with friend guesses and an instant reveal.">
+  <title>Baby Reveal!</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/baby-placeholder.svg" as="image">
+  <link rel="preload" href="assets/storybook-background.jpg" as="image">
+  <link rel="preload" href="assets/chromosomes-xx.png" as="image">
+  <link rel="preload" href="assets/chromosomes-xy.png" as="image">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sky-decor" aria-hidden="true">
+    <!-- Optional floating hearts are generated from decorHearts in config.js. -->
+    <div id="heartDecor" class="heart-decor"></div>
+  </div>
+
+  <section id="passcodeGate" class="gate hidden" aria-labelledby="gateTitle">
+    <div class="gate-card">
+      <p class="eyebrow"></p>
+      <h1 id="gateTitle">A little reveal</h1>
+      <p class="gate-copy">Enter the passcode from us to make your guess.</p>
+      <form id="passcodeForm" class="passcode-form">
+        <label for="passcodeInput">Passcode</label>
+        <div class="passcode-row">
+          <input id="passcodeInput" name="passcode" type="password" autocomplete="current-password" placeholder="magic word" required>
+          <button class="button primary" type="submit">Enter</button>
+        </div>
+        <p id="passcodeError" class="form-note error" role="alert"></p>
+      </form>
+      <p id="passcodeHint" class="tiny-note"></p>
+    </div>
+  </section>
+
+  <main id="app" class="app hidden">
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"></p>
+        <h1> A little reveal for our little one
+          <span id="babyNickname" style="display:none;">Baby</span>
+        </h1>
+        <p class="hero-subtitle">Make your guess first. Then the reveal appears right away, along with everyone else's guesses and notes.</p>
+      </div>
+
+      <figure class="baby-card">
+        <div class="photo-frame">
+          <img id="babyPhoto" src="assets/baby-placeholder.svg" alt="Baby photo or ultrasound">
+        </div>
+        <figcaption id="photoCaption">A sneak peek</figcaption>
+      </figure>
+    </header>
+
+    <section class="layout-grid" aria-label="Guess form and vote results">
+      <section class="card guess-card" aria-labelledby="guessTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Make your guess</p>
+          <h2 id="guessTitle">What do you think?</h2>
+          <p>Add your name, choose girl or boy, and then the answer pops open.</p>
+        </div>
+
+        <form id="voterForm" class="voter-form">
+          <label for="voterName">Your name</label>
+          <input id="voterName" name="voterName" type="text" maxlength="80" placeholder="Aunt Jamie" autocomplete="name" required>
+
+          <label for="voterNote">Leave a little note <span class="optional">(optional)</span></label>
+          <textarea id="voterNote" name="voterNote" maxlength="500" rows="3" placeholder="Tiny note, prediction, or wish for baby"></textarea>
+
+          <div class="guess-grid" role="radiogroup" aria-label="Choose girl or boy">
+            <button class="guess-button girl" type="button" data-guess="XX" aria-pressed="false">
+              <span class="chromosome-badge coral">
+                <img data-chromosome-img="XX" src="assets/chromosomes-xx.png" alt="">
+              </span>
+              <span class="guess-title">Girl <span class="label-heart" aria-hidden="true">♥</span></span>
+              <span class="guess-subtitle"></span>
+            </button>
+
+            <button class="guess-button boy" type="button" data-guess="XY" aria-pressed="false">
+              <span class="chromosome-badge sage">
+                <img data-chromosome-img="XY" src="assets/chromosomes-xy.png" alt="">
+              </span>
+              <span class="guess-title">Boy <span class="label-heart" aria-hidden="true">♥</span></span>
+              <span class="guess-subtitle"></span>
+            </button>
+          </div>
+
+          <button id="submitVote" class="button primary full" type="submit" disabled>Lock in my guess + reveal</button>
+          <p id="voteStatus" class="form-note" role="status"></p>
+        </form>
+      </section>
+
+      <aside id="statsCard" class="card stats-card locked" aria-labelledby="statsTitle">
+        <div class="section-heading compact">
+          <p class="eyebrow">Friends' guesses</p>
+          <h2 id="statsTitle">Votes unlock after you guess</h2>
+          <p id="statsIntro">We will keep everyone else's guesses tucked away so your vote stays yours.</p>
+        </div>
+
+        <div id="votesLocked" class="votes-locked" aria-hidden="true">
+          <span class="lock-sun"></span>
+          <p>No peeking yet.</p>
+        </div>
+
+        <div id="voteResults" class="vote-results hidden">
+          <div class="vote-bars" aria-label="Vote totals">
+            <div class="vote-row">
+              <div class="vote-label"><span>Girl guesses</span><strong id="xxCount">0</strong></div>
+              <div class="bar-track"><span id="xxBar" class="bar-fill coral" style="width: 0%"></span></div>
+            </div>
+            <div class="vote-row">
+              <div class="vote-label"><span>Boy guesses</span><strong id="xyCount">0</strong></div>
+              <div class="bar-track"><span id="xyBar" class="bar-fill sage" style="width: 0%"></span></div>
+            </div>
+          </div>
+
+          <ul id="voteList" class="vote-list"></ul>
+          <p id="votesEmpty" class="empty-state">No other votes yet.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="revealPanel" class="reveal-panel hidden" aria-live="polite">
+      <div class="reveal-card">
+        <div class="reveal-visual" aria-hidden="true">
+          <span id="revealBadge" class="chromosome-badge sage reveal-badge">
+            <img id="revealChromosome" data-chromosome-img="XY" src="assets/chromosomes-xy.png" alt="">
+          </span>
+        </div>
+        <p class="eyebrow">The reveal</p>
+        <h2 id="revealHeadline"></h2>
+        <p id="revealCopy"></p>
+        <button id="resetGuess" class="button ghost" type="button">Let someone else guess here</button>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Made with love by <span id="coupleNames">our little family</span>. Please keep the link and passcode with friends and family.</p>
+    </footer>
+  </main>
+
+  <section class="storybook-bottom" aria-hidden="true"></section>
+
+  <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
+  <script src="script.js" defer></script>
+  
+</body>
+</html>

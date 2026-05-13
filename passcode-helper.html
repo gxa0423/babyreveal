@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Passcode Hash Helper</title>
+  <style>
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; font-family: ui-rounded, "Avenir Next", system-ui, sans-serif; background: linear-gradient(to bottom, #fbf8ef 0%, #f0e2cf 56%, #d3b992 112%); color: #4d3322; }
+    main { width: min(640px, calc(100% - 32px)); padding: 32px; border: 1.5px solid rgba(118,82,56,.20); border-radius: 28px; background: rgba(255,250,240,.91); box-shadow: 0 24px 70px rgba(77,51,34,.16); }
+    h1 { margin: 0 0 10px; color: #4d3322; font-size: clamp(2rem, 7vw, 4rem); line-height: .95; letter-spacing: -.05em; }
+    p { color: #765238; line-height: 1.6; }
+    label { display: block; margin: 22px 0 8px; font-weight: 800; }
+    input, textarea, button { width: 100%; box-sizing: border-box; font: inherit; }
+    input, textarea { border: 1px solid rgba(118,82,56,.25); border-radius: 16px; padding: 14px; background: rgba(255,253,246,.86); color: #4d3322; }
+    textarea { min-height: 92px; resize: vertical; }
+    button { margin-top: 12px; min-height: 52px; border: 0; border-radius: 999px; font-weight: 900; color: #4d3322; background: linear-gradient(135deg, #cfa29d, #f3df9f 52%, #c7d1b9); cursor: pointer; }
+    code { background: rgba(255,253,246,.75); padding: 2px 6px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Passcode helper</h1>
+    <p>Type the passcode you want to share with friends. Copy the generated hash into <code>config.js</code> as <code>passcodeHash</code>.</p>
+    <label for="passcode">New passcode</label>
+    <input id="passcode" type="password" placeholder="something sweet but not obvious">
+    <button id="makeHash" type="button">Generate hash</button>
+    <label for="hash">SHA-256 hash</label>
+    <textarea id="hash" readonly></textarea>
+  </main>
+  <script>
+    document.querySelector('#makeHash').addEventListener('click', async function () {
+      const passcode = document.querySelector('#passcode').value.trim();
+      const bytes = new TextEncoder().encode(passcode);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', bytes);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      document.querySelector('#hash').value = hashArray.map(function (byte) {
+        return byte.toString(16).padStart(2, '0');
+      }).join('');
+    });
+  </script>
+</body>
+</html>

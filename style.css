@@ -1,0 +1,1153 @@
+:root {
+  /*
+    Main palette from the generated watercolor animal background.
+    Quick edits:
+    --girl controls the girl button / XX accents.
+    --boy controls the boy button / XY accents.
+    --brown controls text/outlines.
+    The full-page background image is assets/storybook-background.jpg.
+  */
+  --page-top: #fbf8ef;
+  --page-mid: #f0e2cf;
+  --page-bottom: #d3b992;
+  --cream: #fffaf0;
+  --cream-strong: #fffdf6;
+  --oat: #eadcc5;
+  --wheat: #ceb28b;
+  --sun: #f3df9f;
+  --girl: #cfa3ad;
+  --girl-deep: #9a6974;
+  --boy: #c8d3bb;
+  --boy-deep: #728463;
+  --leaf: #a6ad8c;
+  --brown: #765238;
+  --brown-deep: #4d3322;
+  --brown-soft: rgba(118, 82, 56, 0.20);
+  --brown-softer: rgba(118, 82, 56, 0.12);
+  --card: rgba(255, 250, 240, 0.88);
+  --card-strong: rgba(255, 253, 246, 0.96);
+  --shadow: 0 26px 70px rgba(77, 51, 34, 0.18);
+  --shadow-small: 0 14px 34px rgba(77, 51, 34, 0.13);
+  --radius-xl: 34px;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  color-scheme: light;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--brown-deep);
+  font-family: ui-rounded, "Avenir Next", Nunito, Quicksand, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--page-bottom);
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 100%;
+  background-image: url("assets/storybook-background.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom, rgba(251, 248, 239, 0.08), rgba(251, 248, 239, 0.00) 38%, rgba(77, 51, 34, 0.04));
+  pointer-events: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.sky-decor {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sun-shape {
+  position: absolute;
+  top: clamp(24px, 6vw, 72px);
+  right: clamp(26px, 10vw, 146px);
+  width: clamp(112px, 15vw, 198px);
+  aspect-ratio: 1;
+  border: 1.5px solid rgba(118, 82, 56, 0.24);
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 31%, #fff7da 0%, var(--sun) 43%, rgba(206, 178, 139, 0.68) 74%);
+  box-shadow: 0 0 0 22px rgba(243, 223, 159, 0.18), 0 0 86px rgba(243, 223, 159, 0.46);
+  opacity: 0.76;
+}
+
+.sun-shape::before {
+  content: "";
+  position: absolute;
+  inset: -26px;
+  border-radius: inherit;
+  background: repeating-conic-gradient(from 8deg, rgba(243, 223, 159, 0.45) 0deg 8deg, transparent 8deg 24deg);
+  mask-image: radial-gradient(circle, transparent 0 62%, #000 64% 72%, transparent 74%);
+}
+
+.cloud {
+  position: absolute;
+  width: clamp(150px, 18vw, 255px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 16px 40px rgba(118, 82, 56, 0.08));
+}
+
+.cloud-path {
+  fill: rgba(255, 250, 240, 0.78);
+  stroke: rgba(118, 82, 56, 0.22);
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.cloud-one {
+  top: 14%;
+  left: 4%;
+  transform: rotate(-2deg);
+  opacity: 0.72;
+}
+
+.cloud-two {
+  top: 7%;
+  left: 38%;
+  transform: scale(0.66) rotate(2deg);
+  opacity: 0.50;
+}
+
+.cloud-three {
+  top: 31%;
+  right: 7%;
+  transform: scale(0.58) rotate(2deg);
+  opacity: 0.44;
+}
+
+.cloud-four {
+  bottom: 20%;
+  left: -2%;
+  transform: scale(0.74) rotate(1deg);
+  opacity: 0.40;
+}
+
+.heart-decor {
+  position: absolute;
+  inset: 0;
+}
+
+.heart {
+  position: absolute;
+  color: rgba(118, 82, 56, var(--heart-opacity, 0.26));
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: var(--heart-size, 16px);
+  line-height: 1;
+  text-shadow: 0 8px 24px rgba(77, 51, 34, 0.08);
+  transform: rotate(var(--heart-rotate, 0deg)) scale(var(--heart-scale, 1));
+  transform-origin: center;
+  user-select: none;
+}
+
+.gate,
+.app {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.gate {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 42px 0;
+}
+
+.gate-card,
+.card,
+.baby-card,
+.reveal-card {
+  border: 1.5px solid var(--brown-soft);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.gate-card {
+  width: min(520px, 100%);
+  padding: clamp(28px, 6vw, 48px);
+  border-radius: var(--radius-xl);
+  text-align: center;
+}
+
+.sunrise-mini {
+  position: relative;
+  width: 112px;
+  height: 60px;
+  margin: 0 auto 18px;
+}
+
+.sunrise-mini::before {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 0;
+  width: 66px;
+  height: 66px;
+  border-radius: 999px 999px 0 0;
+  background: rgba(243, 223, 159, 0.78);
+  clip-path: inset(0 0 50% 0);
+}
+
+.sunrise-mini::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 26px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--brown);
+  box-shadow: 56px -2px 0 -1px var(--brown);
+}
+
+.hero-sunrise {
+  margin: 0 0 16px;
+  transform-origin: left center;
+  transform: scale(0.82);
+}
+
+.gate-card h1,
+.hero h1,
+.section-heading h2,
+.reveal-card h2 {
+  margin: 0;
+  color: var(--brown-deep);
+  letter-spacing: -0.052em;
+  line-height: 0.98;
+}
+
+.gate-card h1 {
+  font-size: clamp(2.45rem, 8vw, 4.7rem);
+}
+
+.gate-copy {
+  max-width: 32rem;
+  margin: 18px auto 28px;
+  color: var(--brown);
+  line-height: 1.7;
+}
+
+.passcode-form {
+  text-align: left;
+}
+
+.passcode-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+label {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--brown-deep);
+  font-size: 0.92rem;
+  font-weight: 850;
+}
+
+.optional {
+  color: var(--brown);
+  font-size: 0.84rem;
+  font-weight: 760;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1.5px solid var(--brown-soft);
+  border-radius: 17px;
+  background: rgba(255, 253, 246, 0.83);
+  color: var(--brown-deep);
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+input {
+  min-height: 54px;
+  padding: 0 16px;
+}
+
+textarea {
+  min-height: 88px;
+  padding: 14px 16px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(118, 82, 56, 0.56);
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(118, 82, 56, 0.48);
+  background: rgba(255, 253, 246, 0.98);
+  box-shadow: 0 0 0 5px rgba(207, 162, 157, 0.24);
+}
+
+.button {
+  min-height: 54px;
+  border: 1.5px solid var(--brown-soft);
+  border-radius: 999px;
+  padding: 0 22px;
+  color: var(--brown-deep);
+  font-weight: 900;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-small);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.button.primary {
+  background: linear-gradient(135deg, rgba(207, 162, 157, 0.80), rgba(243, 223, 159, 0.86) 48%, rgba(199, 209, 185, 0.88));
+}
+
+.button.ghost {
+  background: rgba(255, 253, 246, 0.78);
+}
+
+.button.full {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--brown);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.tiny-note,
+.form-note,
+.empty-state,
+.site-footer {
+  color: var(--brown);
+  font-size: 0.92rem;
+}
+
+.form-note {
+  min-height: 22px;
+  margin: 12px 0 0;
+}
+
+.form-note.error {
+  color: #9b4d3c;
+  font-weight: 850;
+}
+
+.app {
+  padding: clamp(24px, 5vw, 52px) 0 24px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.58fr);
+  gap: clamp(24px, 5vw, 56px);
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.hero-copy {
+  padding: clamp(8px, 2vw, 18px) 0;
+}
+
+.hero h1 {
+  max-width: 13ch;
+  font-size: clamp(3rem, 8.5vw, 6.5rem);
+}
+
+.hero-subtitle {
+  max-width: 45rem;
+  margin: 22px 0 24px;
+  color: var(--brown);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-pills span {
+  padding: 10px 14px;
+  border: 1.5px solid var(--brown-soft);
+  border-radius: 999px;
+  background: rgba(255, 253, 246, 0.68);
+  color: var(--brown-deep);
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.baby-card {
+  margin: 0;
+  padding: 14px;
+  border-radius: var(--radius-xl);
+}
+
+.photo-frame {
+  /* Baby image frame: keep this 1 / 1 for a perfect square. */
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1.5px solid var(--brown-soft);
+  border-radius: 28px;
+  background: radial-gradient(circle at 32% 24%, rgba(255, 253, 246, 0.95), transparent 30%), linear-gradient(145deg, rgba(207, 162, 157, 0.34), rgba(199, 209, 185, 0.50), rgba(243, 223, 159, 0.34));
+}
+
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1.5px dashed rgba(118, 82, 56, 0.22);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.baby-card figcaption {
+  padding: 13px 8px 3px;
+  color: var(--brown);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.card {
+  border-radius: var(--radius-xl);
+  padding: clamp(20px, 4vw, 34px);
+}
+
+.section-heading {
+  margin-bottom: 24px;
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+.section-heading p:not(.eyebrow) {
+  margin: 14px 0 0;
+  color: var(--brown);
+  line-height: 1.7;
+}
+
+.section-heading.compact {
+  margin-bottom: 18px;
+}
+
+.voter-form {
+  display: grid;
+  gap: 12px;
+}
+
+.guess-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.guess-button {
+  min-height: 244px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 16px;
+  border: 1.5px solid var(--brown-soft);
+  border-radius: 30px;
+  background: rgba(255, 253, 246, 0.76);
+  color: var(--brown-deep);
+  outline: none;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.guess-button:hover,
+.guess-button:focus-visible,
+.guess-button.selected {
+  transform: translateY(-3px);
+  border-color: rgba(118, 82, 56, 0.42);
+  background: rgba(255, 253, 246, 0.94);
+  box-shadow: 0 18px 52px rgba(77, 51, 34, 0.12);
+}
+
+.guess-button.girl.selected {
+  outline: 4px solid rgba(207, 162, 157, 0.36);
+}
+
+.guess-button.boy.selected {
+  outline: 4px solid rgba(199, 209, 185, 0.55);
+}
+
+.chromosome-badge {
+  width: min(156px, 74%);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.chromosome-badge.coral,
+.chromosome-badge.sage {
+  background: transparent;
+}
+
+.chromosome-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 999px;
+  filter: drop-shadow(0 10px 20px rgba(77, 51, 34, 0.10));
+}
+
+.guess-title {
+  color: var(--brown-deep);
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  font-weight: 950;
+  letter-spacing: -0.03em;
+}
+
+.label-heart {
+  display: inline-block;
+  margin-left: 0.22em;
+  font-size: 0.72em;
+  transform: translateY(-0.06em);
+}
+
+.guess-button.girl .label-heart {
+  color: var(--girl-deep);
+}
+
+.guess-button.boy .label-heart {
+  color: var(--boy-deep);
+}
+
+.guess-subtitle {
+  color: var(--brown);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.stats-card.locked {
+  min-height: 420px;
+}
+
+.votes-locked {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  border: 1.5px dashed rgba(118, 82, 56, 0.22);
+  border-radius: 28px;
+  background: rgba(255, 253, 246, 0.58);
+  text-align: center;
+}
+
+.lock-sun {
+  position: relative;
+  width: 92px;
+  height: 54px;
+}
+
+.lock-sun::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 2px;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px 999px 0 0;
+  background: var(--sun);
+  clip-path: inset(0 0 50% 0);
+}
+
+.lock-sun::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 25px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--brown);
+}
+
+.votes-locked p {
+  margin: 0;
+  color: var(--brown-deep);
+  font-weight: 900;
+}
+
+.vote-bars {
+  display: grid;
+  gap: 16px;
+  margin: 20px 0 22px;
+}
+
+.vote-row {
+  display: grid;
+  gap: 8px;
+}
+
+.vote-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--brown-deep);
+  font-weight: 900;
+}
+
+.bar-track {
+  height: 15px;
+  overflow: hidden;
+  border: 1px solid var(--brown-soft);
+  border-radius: 999px;
+  background: rgba(255, 253, 246, 0.74);
+}
+
+.bar-fill {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  border-radius: inherit;
+  transition: width 360ms ease;
+}
+
+.bar-fill.coral {
+  background: linear-gradient(90deg, var(--girl), #e2bbb5);
+}
+
+.bar-fill.sage {
+  background: linear-gradient(90deg, var(--boy), #dbe2cf);
+}
+
+.vote-list {
+  display: grid;
+  gap: 10px;
+  max-height: 372px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.vote-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 14px;
+  border: 1px solid var(--brown-soft);
+  border-radius: 18px;
+  background: rgba(255, 253, 246, 0.75);
+}
+
+.vote-main {
+  min-width: 0;
+}
+
+.vote-list strong {
+  display: block;
+  overflow: hidden;
+  color: var(--brown-deep);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vote-note {
+  margin: 4px 0 0;
+  color: var(--brown);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.vote-chip {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: var(--brown-deep);
+  font-size: 0.78rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.vote-chip.coral {
+  background: rgba(207, 162, 157, 0.62);
+}
+
+.vote-chip.sage {
+  background: rgba(199, 209, 185, 0.82);
+}
+
+.reveal-panel {
+  margin-top: 22px;
+}
+
+.reveal-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  padding: clamp(28px, 7vw, 58px);
+  text-align: center;
+}
+
+.reveal-card::before,
+.reveal-card::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.reveal-card::before {
+  width: 220px;
+  height: 220px;
+  left: -84px;
+  top: -92px;
+  background: rgba(207, 162, 157, 0.24);
+}
+
+.reveal-card::after {
+  width: 260px;
+  height: 260px;
+  right: -100px;
+  bottom: -128px;
+  background: rgba(199, 209, 185, 0.32);
+}
+
+.reveal-visual {
+  position: relative;
+  z-index: 1;
+  width: min(166px, 54vw);
+  margin: 0 auto 16px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.reveal-badge.chromosome-badge {
+  width: min(156px, 100%);
+}
+
+.reveal-visual img {
+  width: 100%;
+}
+
+.reveal-card h2 {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(3rem, 8vw, 6.4rem);
+}
+
+.reveal-card p:not(.eyebrow) {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  margin: 16px auto 24px;
+  color: var(--brown);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.reveal-card .button {
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer {
+  padding: 24px 0 12px;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.storybook-bottom {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 900px;
+  margin-top: clamp(8px, 3vw, 34px);
+  overflow: visible;
+  background: linear-gradient(
+    to bottom,
+    rgba(211, 185, 146, 0),
+    rgba(250, 247, 239, 0.28) 24%,
+    rgba(250, 247, 239, 0.55)
+  );
+}
+
+.storybook-bottom::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 120px;
+  background: linear-gradient(to bottom, var(--page-bottom), rgba(211, 185, 146, 0));
+  pointer-events: none;
+}
+
+.storybook-bottom img {
+  width: 100%;
+  height: clamp(520px, 56vw, 900px);
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: 0.98;
+}
+
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: 12ch;
+  }
+
+  .baby-card {
+    max-width: 430px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .gate,
+  .app {
+    width: min(100% - 22px, 1120px);
+  }
+
+  .passcode-row,
+  .guess-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guess-button {
+    min-height: 210px;
+  }
+
+  .card,
+  .gate-card,
+  .reveal-card {
+    border-radius: 28px;
+  }
+
+  .cloud-two,
+  .cloud-three,
+  .cloud-four {
+    display: none;
+  }
+
+  .sun-shape {
+    opacity: 0.58;
+    right: -18px;
+  }
+
+  .storybook-bottom img {
+    height: 520px;
+    object-position: center bottom;
+  }
+}
+
+/* Full watercolor-background version */
+
+/* Hide the old separate sun/cloud decorations because the watercolor image has them built in */
+.sky-decor {
+  display: none;
+}
+
+/* Keep content above the watercolor background */
+.gate,
+.app,
+.storybook-bottom {
+  position: relative;
+  z-index: 3;
+}
+
+/* Soft translucent cards */
+.gate-card,
+.card,
+.baby-card,
+.reveal-card,
+.hero-pills span,
+.background-caption {
+  backdrop-filter: blur(14px) saturate(1.04);
+}
+
+.gate-card,
+.card,
+.baby-card,
+.reveal-card {
+  background: var(--card);
+}
+
+/* Remove the inner dotted/dashed line from the baby image frame */
+.photo-frame::before {
+  display: none;
+}
+
+/* Slight text lift against the watercolor */
+.hero h1,
+.section-heading h2,
+.reveal-card h2,
+.gate-card h1,
+.background-caption h2 {
+  text-shadow: 0 2px 0 rgba(255, 250, 240, 0.48);
+}
+
+.hero-subtitle {
+  color: rgba(77, 51, 34, 0.88);
+  font-weight: 650;
+}
+
+/* Poster-style phone layout */
+html,
+body {
+  min-width: 720px;
+}
+
+/*
+  Original watercolor image ratio:
+  864px wide × 1821px tall
+  1821 / 864 = 2.1088
+*/
+body {
+  min-height: max(100vh, calc(100vw * 2.1088));
+  background: var(--page-bottom);
+}
+
+/* Full watercolor background scrolling with page */
+body::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: auto;
+  height: auto;
+  min-height: 100%;
+  background-image: url("assets/storybook-background.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  pointer-events: none;
+}
+
+body::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  min-height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(251, 248, 239, 0.06),
+    rgba(251, 248, 239, 0.00) 46%,
+    rgba(77, 51, 34, 0.03)
+  );
+  pointer-events: none;
+}
+
+.app {
+  min-height: auto;
+  padding-top: clamp(24px, 5vw, 52px);
+}
+
+/*
+  This creates just enough extra page space to show the lower animal illustration,
+  without adding a giant flat color block at the bottom.
+*/
+.storybook-bottom {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  min-height: 650px;
+  margin-top: clamp(12px, 4vw, 48px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* The image is already the body background, so hide the separate footer image */
+.storybook-bottom::before,
+.storybook-bottom img {
+  display: none;
+}
+
+/* Remove the extra caption box that blocked the watercolor animals */
+.background-caption {
+  display: none;
+}
+
+.site-footer {
+  margin-top: clamp(18px, 3vw, 34px);
+  padding: 22px 18px 14px;
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.62);
+  backdrop-filter: blur(8px);
+}
+
+/* Keep the desktop-like two-column layout on phone/tablet */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) 340px;
+    align-items: start;
+  }
+
+  .layout-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  }
+
+  .hero h1 {
+    max-width: 12ch;
+  }
+
+  .baby-card {
+    max-width: 340px;
+    justify-self: center;
+  }
+
+  .guess-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .storybook-bottom {
+    min-height: 750px;
+  }
+}
+
+/* This only matters if browser width is truly under 620px.
+   With viewport width=720, most phones use the 900px block above. */
+@media (max-width: 620px) {
+  html,
+  body {
+    min-width: 720px;
+  }
+
+  body::before {
+    background-size: 100% auto;
+    background-position: top center;
+  }
+
+  .app {
+    min-height: auto;
+  }
+
+  .storybook-bottom {
+    min-height: 750px;
+  }
+}
+
+/* Passcode screen: prevent giant empty scroll area before the site is unlocked */
+body:has(.gate:not(.hidden)) {
+  min-height: 100vh;
+}
+
+body:has(.gate:not(.hidden))::before,
+body:has(.gate:not(.hidden))::after {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+body:has(.gate:not(.hidden))::before {
+  background-size: cover;
+  background-position: center bottom;
+}
+
+body:has(.gate:not(.hidden)) .gate {
+  min-height: 100vh;
+}
+
+body:has(.gate:not(.hidden)) .app,
+body:has(.gate:not(.hidden)) .storybook-bottom,
+body:has(.gate:not(.hidden)) .site-footer {
+  display: none !important;
+}
