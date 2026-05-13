@@ -1075,6 +1075,18 @@ body::after {
 
 /* Keep the desktop-like two-column layout on phone/tablet */
 @media (max-width: 900px) {
+  /* Use the longer watercolor background only after the passcode screen is gone */
+  body:not(:has(.gate:not(.hidden))) {
+    min-height: max(100vh, calc(100vw * 2.1088));
+  }
+
+  body:not(:has(.gate:not(.hidden)))::before {
+    background-image: url("assets/storybook-background-mobile.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% auto;
+  }
+
   .hero {
     grid-template-columns: minmax(0, 1.05fr) 340px;
     align-items: start;
@@ -1101,7 +1113,6 @@ body::after {
     min-height: 750px;
   }
 }
-
 /* This only matters if browser width is truly under 620px.
    With viewport width=720, most phones use the 900px block above. */
 @media (max-width: 620px) {
@@ -1138,6 +1149,7 @@ body:has(.gate:not(.hidden))::after {
 }
 
 body:has(.gate:not(.hidden))::before {
+  background-image: url("assets/storybook-background.jpg");
   background-size: cover;
   background-position: center bottom;
 }
@@ -1146,7 +1158,6 @@ body:has(.gate:not(.hidden)) .gate {
   min-height: 100vh;
 }
 
-body:has(.gate:not(.hidden)) .app,
 body:has(.gate:not(.hidden)) .storybook-bottom,
 body:has(.gate:not(.hidden)) .site-footer {
   display: none !important;
