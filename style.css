@@ -996,7 +996,7 @@ body {
   1821 / 864 = 3.00
 */
 body {
-  min-height: max(100vh, calc(100vw * 3.00));
+  min-height: max(100vh, calc(100vw * 2.1088));
   background: var(--page-bottom);
 }
 
