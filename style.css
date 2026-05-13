@@ -1152,7 +1152,7 @@ body:has(.gate:not(.hidden))::after {
 body:has(.gate:not(.hidden))::before {
   background-image: url("assets/storybook-background.jpg");
   background-size: cover;
-  background-position: center 92%;
+  background-position: center bottom;
 }
 
 body:has(.gate:not(.hidden)) .gate {
