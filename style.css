@@ -992,11 +992,11 @@ body {
 
 /*
   Original watercolor image ratio:
-  864px wide × 1821px tall
-  1821 / 864 = 2.1088
+  864px wide × 2400px tall
+  1821 / 864 = 2.78
 */
 body {
-  min-height: max(100vh, calc(100vw * 2.1088));
+  min-height: max(100vh, calc(100vw * 2.78));
   background: var(--page-bottom);
 }
 
@@ -1077,7 +1077,7 @@ body::after {
 @media (max-width: 900px) {
   /* Use the mobile watercolor only after the passcode has been entered */
   body.reveal-unlocked {
-    min-height: max(100vh, calc(100vw * 2.1088));
+    min-height: max(100vh, calc(100vw * 2.78));
   }
 
   body.reveal-unlocked::before {
@@ -1151,9 +1151,8 @@ body:has(.gate:not(.hidden))::after {
 
 body:has(.gate:not(.hidden))::before {
   background-image: url("assets/storybook-background.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
+  background-size: cover;
+  background-position: center 92%;
 }
 
 body:has(.gate:not(.hidden)) .gate {
