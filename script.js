@@ -203,11 +203,14 @@
   }
 
   function unlockApp(focusName) {
+    document.body.classList.add("reveal-unlocked");
+  
     els.gate.classList.add("hidden");
     els.app.classList.remove("hidden");
+  
     state.guestId = getGuestId(false);
     renderVotes(state.votes);
-
+  
     if (focusName) {
       window.setTimeout(function () {
         els.voterName.focus();

@@ -1075,12 +1075,12 @@ body::after {
 
 /* Keep the desktop-like two-column layout on phone/tablet */
 @media (max-width: 900px) {
-  /* Use the longer watercolor background only after the passcode screen is gone */
-  body:not(:has(.gate:not(.hidden))) {
+  /* Use the mobile watercolor only after the passcode has been entered */
+  body.reveal-unlocked {
     min-height: max(100vh, calc(100vw * 2.1088));
   }
 
-  body:not(:has(.gate:not(.hidden)))::before {
+  body.reveal-unlocked::before {
     background-image: url("assets/storybook-background-mobile.jpg");
     background-repeat: no-repeat;
     background-position: top center;
@@ -1113,6 +1113,7 @@ body::after {
     min-height: 750px;
   }
 }
+
 /* This only matters if browser width is truly under 620px.
    With viewport width=720, most phones use the 900px block above. */
 @media (max-width: 620px) {
@@ -1150,7 +1151,8 @@ body:has(.gate:not(.hidden))::after {
 
 body:has(.gate:not(.hidden))::before {
   background-image: url("assets/storybook-background.jpg");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center bottom;
 }
 
